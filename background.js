@@ -8,11 +8,21 @@ chrome.commands.onCommand.addListener((command) => {
           function: getDownloadUrl,
         },
         (results) => {
-          console.log("before if");
+          if (chrome.runtime.lastError) {
+            console.error(chrome.runtime.lastError);
+            return;
+          }
           if (results && results[0] && results[0].result) {
-            console.log("in if");
             const url = results[0].result;
-            chrome.runtime.sendMessage({ url: url });
+            chrome.downloads.download({ url: url }, (downloadId) => {
+              if (chrome.runtime.lastError) {
+                console.error(chrome.runtime.lastError);
+              } else {
+                console.log(`Download started with ID: ${downloadId}`);
+              }
+            });
+          } else {
+            console.error("No URL found in the active tab.");
           }
         }
       );
