@@ -10,12 +10,13 @@
   "background": {
     "service_worker": "background.js"
   },
-  "commands": {
-    "trigger_download": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Y"
-      },
-      "description": "Trigger download from active tab"
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
     }
+  ],
+  "action": {
+    "default_popup": "popup.html"
   }
 }
