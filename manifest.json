@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Download Button Data",
+  "name": "Eng Ext",
   "version": "1.0",
   "permissions": [
     "downloads",
@@ -12,13 +12,5 @@
   ],
   "background": {
     "service_worker": "background.js"
-  },
-  "commands": {
-    "trigger_download": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Y"
-      },
-      "description": "Trigger download from active tab"
-    }
   }
 }
